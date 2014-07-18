@@ -1,0 +1,89 @@
+{template "content","header_category"}
+
+    <div class="container">
+        <div class="one-half">
+            <ul class="contact-links" style="margin-left:0px;">
+                <li><a href="{siteurl($siteid)}">首页></a></li>
+                <li>{catpos($catid)}{$title}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="column-block">
+            <section class="article-left">
+                    <article>
+                        <h2>{$title}</h2>
+                        <h5>
+                            <span>日期：{$inputtime}&nbsp;&nbsp;&nbsp;发布者：风继续吹&nbsp;&nbsp;&nbsp;来源：{$copyfrom}&nbsp;&nbsp;&nbsp;评论：<a href="#comment_iframe" id="comment">0</a> 点击：</span><span id="hits"></span>
+                            <div class="bdsharebuttonbox" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                        </h5>
+                        <section class="content">
+                            {if $allow_visitor==1}
+                            {$content}
+                            <!--内容关联投票-->
+                            {if $voteid}<script language="javascript" src="{APP_PATH}index.php?m=vote&c=index&a=show&action=js&subjectid={$voteid}&type=2"></script>{/if}
+
+                            {else}
+                            <CENTER><a href="{APP_PATH}index.php?m=content&c=readpoint&allow_visitor={$allow_visitor}"><font color="red">阅读此信息需要您支付 <B><I>{$readpoint} {if $paytype}元{else}点{/if}</I></B>，点击这里支付</font></a></CENTER>
+                            {/if}
+                        </section>
+                        <nav class="pagination">
+                            <ul>
+                                {$pages}
+                            </ul>
+                        </nav>
+                    </article>
+
+                    {if $titles}
+                    <fieldset>
+                        <legend class="f14">本文导航</legend><ul class="list blue row-2">
+                        {loop $titles $r}
+                        <li>{$n}、<a href="{$r[url]}">{$r[title]}</a></li>
+                        {/loop}
+                    </ul>
+                    </fieldset>
+                    {/if}
+
+                    <p style="margin-bottom:10px">
+                        <strong>相关热词搜索：</strong>{loop $keywords $keyword}<a href="{APP_PATH}index.php?m=content&c=tag&a=lists&tag={urlencode($keyword)}" class="blue">{$keyword}</a> 	{/loop}
+                    </p>
+                    <p class="f14">
+                        <strong>上一篇：</strong><a href="{$previous_page[url]}">{$previous_page[title]}</a><br />
+                        <strong>下一篇：</strong><a href="{$next_page[url]}">{$next_page[title]}</a>
+                    </p>
+                    {pc:content action="relation" relation="$relation" id="$id" catid="$catid" num="5" keywords="$rs[keywords]"}
+                    {if $data}
+                    <div class="related">
+                        <h5 class="blue">延伸阅读：</h5>
+                        <ul class="list blue lh24 f14">
+                            {loop $data $r}
+                            <li>·<a href="{$r[url]}" target="_blank">{$r[title]}</a><span>({date('Y-m-d',$r[inputtime])})</span></li>
+                            {/loop}
+                        </ul>
+                    </div>
+                    {/if}
+                    {/pc}
+
+            </section>
+
+            <aside class="article-right">
+                <section class="aside-right">
+                    <div class="box">
+                        <h5 class="top-title">频道总排行</h5>
+                        <ul class="top-list">
+                            {pc:content  action="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
+                            {loop $data $r}
+                            <li><a href="{$r[url]}" target="_blank" title="{$r[title]}">{str_cut($r[title], 28, '')}</a></li>
+                            {/loop}
+                            {/pc}
+                        </ul>
+                    </div>
+                </section>
+
+            </aside>
+        </div>
+    </div>
+
+{template "content","footer"}

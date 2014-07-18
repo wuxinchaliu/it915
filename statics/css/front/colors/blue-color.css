@@ -1,0 +1,10 @@
+.main-menu li a {border-left: 1px solid #0084c9}
+.main-menu li:last-child a { border-right: 1px solid #0084c9}
+.main-menu li li a {border-left: none}
+.main-menu li li:last-child a { border-right: none}
+#main-navigation {background: #169fe6}
+#header-links { border-top: 4px solid #169fe6}
+.button.color, .button.grey:hover { background: #169fe6; border-bottom: 1px solid #0084c9;}
+
+ ul.main-menu.alternative li a#current{ background-color: #169fe6;color:#FFF;}
+  ul.main-menu.alternative.four li a#current{background-color: #FFF;border:2px solid #169fe6 ;}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>mysql5.5版本主从数据库同步详解 - c语言，c语言入门教程，C语言学习视频，c语言学习资料，数据结构 - 学编程就去it915</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="dddd">
+    <meta name="description" content="ddd">
+
+    <link rel="shortcut icon" href="http://127.0.0.10/statics/images/front/favicon.ico"/>
+    <link rel="stylesheet" href="http://127.0.0.10/statics/css/front/style.css" media="screen"/>
+    <link href="http://127.0.0.10/statics/js/ckeditor/contents.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" id="style-color" href="http://127.0.0.10/statics/css/front/colors/blue-color.css" media="screen"/><!-- DEFAULT BLUE COLOR CSS FILE -->
+
+    <!--[if lt IE 9]>
+    <script src="http://127.0.0.10/statics/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="container">
+    <!-- main container starts-->
+    <div id="wrapp">
+        <!-- main wrapp starts-->
+        <header id="header">
+            <!--header starts -->
+            <div id="header-links">
+                <div id="container">
+                    <div class="three-fourth">
+                                                <ul class="contact-links">
+                                                        <li><a href="http://127.0.0.10/c/" class="button color small round">C语言</a></li>
+                                                        <li><a href="http://127.0.0.10/cpp/" class="button color small round">c++</a></li>
+                                                        <li><a href="http://127.0.0.10/java/" class="button color small round">java</a></li>
+                                                        <li><a href="http://127.0.0.10/net/" class="button color small round">c#</a></li>
+                                                        <li><a href="http://127.0.0.10/php/" class="button color small round">php</a></li>
+                                                    </ul>
+                                                                    </div>
+                    <nav class="top-search" style="margin-right: 20px;">
+                        <!-- search starts-->
+                        <form action="http://127.0.0.10/index.php" method="get" target="_blank">
+                            <button class="search-btn"></button>
+                            <input type="hidden" name="m" value="search"/>
+                            <input type="hidden" name="c" value="index"/>
+                            <input type="hidden" name="a" value="init"/>
+                            <input type="hidden" name="typeid" value="0" id="typeid"/>
+                            <input type="hidden" name="siteid" value="1" id="siteid"/>
+                            <input type="text" class="search-field" name="q" id="q" onblur="if(this.value=='')this.value='Search';" onfocus="if(this.value=='Search')this.value='';" value="Search"/>
+                        </form>
+                    </nav>
+                </div>
+            </div>
+            <div class="container">
+                <div class="head-wrapp">
+                    <a href="index.html" id="logo">
+                        <img src="http://127.0.0.10/statics/images/front/logo.png" alt="it915"/>
+                    </a>
+                    <div class="one-half">
+                        <ul class="contact-links margin-top">
+                                                                                                                        <li>
+                                <a href="http://127.0.0.10/c/rumen/">入门教程</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/xiazai/">资料下载</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/c/tigao/">提高教程</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/shizhan/">实战案例</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/xianjing/">常见问题</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/jiegou/">数据结构</a>
+                                </li>
+                                                                                                                </ul>
+                    </div>
+                    <!--your logo-->
+
+                    <!--search ends -->
+                </div>
+            </div>
+
+        </header>
+        <!-- header ends--><div class="horizontal-line"></div>
+<div id="content">
+    <div class="container">
+        <div class="one-half">
+            <ul class="contact-links" style="">
+                <li><a href="http://127.0.0.10">首页></a></li>
+                <li><a href="http://127.0.0.10/c/">C语言</a> > <a href="http://127.0.0.10/c/rumen/">入门教程</a> > mysql5.5版本主从数据库同步详解</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="one column-block">
+            <section class="two-third article-left">
+                    <article>
+                        <h2>mysql5.5版本主从数据库同步详解</h2>
+                        <h5>
+                            <span>日期：2014-07-15 20:32:36&nbsp;&nbsp;&nbsp;发布者：风继续吹&nbsp;&nbsp;&nbsp;来源：d&nbsp;&nbsp;&nbsp;评论：<a href="#comment_iframe" id="comment">0</a> 点击：</span><span id="hits"></span>
+                            <div class="bdsharebuttonbox" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                        </h5>
+                        <section class="content">
+                                                        <div class="txt w92 sLine h330" id="content">
+<p style="TEXT-INDENT: 2em;">以前做mysql主从同步，以前用mysql5.1直接配置2个my.ini配置文件就可以，比较方便，最近用Mysql5.5，按照那种方法，配置完以 后，重启mysql服务器，启动不了，查询了手册，才知道mysql5.5 版本以上不再支持master的用法，在网上找了资料，成功配置了5.5主从复制，具体方法如下：<br />
+<span style="font-size:14px;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1、主服务器master配置文件my.cnf：</strong></span></p>
+<p style="TEXT-INDENT: 2em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; server-id = 1(主数据库一般都是id为1)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; log-bin=mysql-bin (必须的)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binlog_format=mixed （必须的，推荐类型为mixd）<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; expire_logs_days=5 （为避免日志文件过大，设置过期时间为5天）<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binlog-ignore-db = mysql （忽略同步的文件，也不记入二进制日志，可列多行)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binlog-ignore-db = information_schema<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; replicate-do-db = test （需要同步的文件，记入二进制日志，可列多行）</p>
+<p style="TEXT-INDENT: 2em;"><span style="font-size:14px;"><strong>2、从服务器slave配置文件my.cnf：</strong></span></p>
+<p style="TEXT-INDENT: 2em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; server-id = 2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; log-bin=mysql-bin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; binlog_format=mixed<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; expire_logs_days=5<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bin_log日志必须开启</p>
+<p style="TEXT-INDENT: 2em;"><span style="font-size:14px;"><strong>3、接着重启mysql 服务器</strong></span></p>
+<p style="TEXT-INDENT: 2em;"><span style="font-size:14px;"><strong>4、 Mysql主服务器(ip地址:192.168.1.130)</strong></span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 给从服务器授权haoyangshi用户,密码为haoyangshi.com,使其具有访问主服务器权限<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 接着执行一下命令：<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GRANT replication slave on *.* to &#39;haoyangshi&#39; @ &#39;192.168.1.131&#39; IDENTIFIED BY &#39;haoyangshi.com&#39;；</p>
+<p style="TEXT-INDENT: 2em;"><span style="font-size:14px;"><strong>5、查看Mysql主服务器的状态</strong></span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 执行：show master status；<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 记录master数据库所处的位置<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show master status;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; | File &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | Position |<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; | mysql-bin.000011 | 189 &nbsp; &nbsp; &nbsp;|</p>
+<p style="TEXT-INDENT: 2em;"><span style="font-size:14px;"><strong>6、查看Mysql从服务器</strong></span><span style="font-size:14px;"><strong>(ip地址:192.168.1.131)</strong></span><span style="font-size:14px;"><strong>的状态</strong></span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 执行：slave stop；<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 执 行：change master to master_host=&#39;192.168.1.130&#39;, master_port=3306, master_user=&rsquo;slave&rsquo;, master_password=&rsquo;slave777&rsquo;, master_log_file=&rsquo;mysql-bin.000011&prime;, master_log_pos=189;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 执行：slave start；</p>
+<p style="TEXT-INDENT: 2em;"><span style="font-size:14px;"><strong>7、查询slave的状态：mysql&gt; show slave status \G；看下slave的状态:</strong></span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Master_Log_File: mysql-bin.000011 (和主mysql一致)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Read_Master_Log_Pos: 189 （和主mysql一致）<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Slave_IO_Running: Yes （读写）<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Slave_SQL_Running: Yes （数据库状态）</p>
+<p style="TEXT-INDENT: 2em;"><span style="font-size:14px;"><strong>8、测试数据库是否能够同步：略；</strong></span></p>
+<p style="PADDING-BOTTOM: 15px; LINE-HEIGHT: 28px; BACKGROUND-COLOR: rgb(255,255,255); MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: 宋体, 'Arial Narrow', arial, serif; COLOR: rgb(85,85,85); FONT-SIZE: 14px; PADDING-TOP: 0px;"><span style="color:#000000;"><strong style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;">&nbsp;&nbsp;&nbsp;9、几个常用的命令：</strong></span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Slave start; --启动复制线程<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Slave stop; --停止复制线程<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reset slave; --重置复制线程<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show slave status; --显示复制线程的状态<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show slave status\G; --显示复制线程的状态(分行显示)<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show master status\G; --显示主数据库的状态(分行显示)<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show master logs --显示主数据库日志，需在主数据库上运行<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Change master to; --动态改变到主数据库的配置<br style="PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px;" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show processlist --显示有哪些线程在运行</p>
+</div>
+                            <!--内容关联投票-->
+                            
+                                                    </section>
+                    </article>
+
+                                        <div id="pages" class="text-c"></div>
+
+                    <p style="margin-bottom:10px">
+                        <strong>相关热词搜索：</strong><a href="http://127.0.0.10/index.php?m=content&c=tag&a=lists&tag=dddd" class="blue">dddd</a> 	                    </p>
+                    <p class="f14">
+                        <strong>上一篇：</strong><a href="javascript:alert('第一页');">第一页</a><br />
+                        <strong>下一篇：</strong><a href="javascript:alert('最后一页');">最后一页</a>
+                    </p>
+                                                            
+            </section>
+            <section class="one-third ">
+
+            </section>
+
+        </section>
+    </div>
+
+
+</div>
+<section id="copyrights">
+    <section class="container">
+        <div class="one-half">
+            <p>
+                京ICP备12006932号-4 Copyright &copy; 2014.<a target="_blank" href="http://www.it915.com/">IT915.com</a> All rights reserved.
+                <a target="_blank" href="http://www.it915.com/">IT915</a>
+            </p>
+        </div>
+        <div class="one-third">
+            <ul class="copyright_links">
+                <li><a href="#" title="关于我们">关于我们</a></li>
+                <li><a href="#" title="联系我们">联系我们</a></li>
+                <li><a href="#" title="版权声明">版权声明</a></li>
+                <li><a href="#" title="投诉建议">投诉建议</a></li>
+            </ul>
+        </div>
+    </section>
+</section>
+
+</div>
+<!-- main wrapp starts-->
+</div>
+<!-- main container ends-->
+</body>
+</html>

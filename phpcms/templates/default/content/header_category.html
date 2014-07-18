@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="{$SEO['keyword']}">
+    <meta name="description" content="{$SEO['description']}">
+
+    <link rel="shortcut icon" href="{IMG_PATH}front/favicon.ico"/>
+    <link rel="stylesheet" href="{CSS_PATH}front/style.css" media="screen"/>
+    <link href="{JS_PATH}ckeditor/contents.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" id="style-color" href="{CSS_PATH}front/colors/blue-color.css" media="screen"/><!-- DEFAULT BLUE COLOR CSS FILE -->
+
+    <!--[if lt IE 9]>
+    <script src="{JS_PATH}html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="container">
+    <!-- main container starts-->
+    <div id="wrapp">
+        <!-- main wrapp starts-->
+        <header id="header">
+            <!--header starts -->
+            <div id="header-links">
+                <div id="container">
+                    <div class="three-fourth">
+                        {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+                        <ul class="contact-links">
+                            {loop $data $r}
+                            <li><a href="{$r[url]}" class="button color small round">{$r[catname]}</a></li>
+                            {/loop}
+                        </ul>
+                        {/pc}
+                        {php echo runhook('glogal_menu')}
+                    </div>
+                    <nav class="top-search" style="margin-right: 20px;">
+                        <!-- search starts-->
+                        <form action="{APP_PATH}index.php" method="get" target="_blank">
+                            <button class="search-btn"></button>
+                            <input type="hidden" name="m" value="search"/>
+                            <input type="hidden" name="c" value="index"/>
+                            <input type="hidden" name="a" value="init"/>
+                            <input type="hidden" name="typeid" value="{$typeid}" id="typeid"/>
+                            <input type="hidden" name="siteid" value="{$siteid}" id="siteid"/>
+                            <input type="text" class="search-field" name="q" id="q" onblur="if(this.value=='')this.value='Search';" onfocus="if(this.value=='Search')this.value='';" value="Search"/>
+                        </form>
+                    </nav>
+                </div>
+            </div>
+            <div class="container">
+                <div class="head-wrapp">
+                    <a href="index.html" id="logo">
+                        <img src="{IMG_PATH}front/logo.png" alt="it915"/>
+                    </a>
+                    <div class="one-half">
+                        <ul class="contact-links margin-top">
+                            {if $top_parentid}
+                            {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+                                {loop $data $r}
+                                <li>
+                                <a href="{$r[url]}">{$r[catname]}</a>
+                                </li>
+                                {/loop}
+                            {/pc}
+                            {/if}
+                        </ul>
+                    </div>
+                    <!--your logo-->
+
+                    <!--search ends -->
+                </div>
+            </div>
+            <div id="main-navigation">
+                <!--main navigation wrapper starts -->
+                <div class="container">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="index.html" id="current">首页</a>
+                        </li>
+
+                        <li><a href="#" >编程语言</a>
+                            <!-- Mega Menu / Start -->
+                            {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+                            <ul class="two-columns">
+                                {loop $data $r}
+                                <li class="one-fourth">
+                                    <a href="{$r[url]}">{$r[catname]}</a></li>
+                                {/loop}
+                            </ul>
+                            {/pc}
+                            {php echo runhook('glogal_menu')}
+                            <!-- Mega Menu / End -->
+                        </li>
+                        <li>
+                            <a href="#"> 常用软件</a>
+                        </li>
+                        <li>
+                            <a href="#">学习资料</a>
+                        </li>
+
+                        <li>
+                            <a href="#">学习视频</a>
+                        </li>
+                        <li>
+                            <a href="#">实用手册</a>
+                        </li>
+                        <li>
+                            <a href="http://hao.it915.com">网址导航</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--main navigation wrapper ends -->
+        </header>
+        <!-- header ends-->
