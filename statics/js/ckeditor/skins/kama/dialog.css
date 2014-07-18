@@ -12,7 +12,7 @@ body .cke_dialog{visibility:visible;}.cke_skin_kama table.cke_dialog.cke_browser
 .cke_skin_kama .cke_dialog .cke_dialog_body .cke_dialog_close_button{top:3px; right:5px}
 .cke_skin_kama .cke_dialog .cke_dialog_body a.cke_dialog_close_button:hover{background-position:0 -1045px;}
 .cke_skin_kama .cke_dialog_footer{background-color:#F6F6F6;border-top:1px solid #DADEE5; padding:5px 0}
-.cke_skin_kama .cke_dialog_page_contents{width:90%; margin-left:auto; margin-right:auto;}
+.cke_skin_kama .cke_dialog_page_contents{width:90%;  margin-right:auto;}
 .cke_editor_content_dialog .cke_dialog_contents{ background:#fff; background-color:#fff !important;}
 .cke_editor_content_dialog .cke_dialog_contents{ margin:1px;}
 .cke_skin_kama .cke_dialog_tabs a{ margin-right:5px; border:1px solid #dce3ed}
