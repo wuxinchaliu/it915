@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="{IMG_PATH}front/favicon.ico"/>
     <link rel="stylesheet" href="{CSS_PATH}front/style.css" media="screen"/>
     <link href="{JS_PATH}ckeditor/contents.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" id="style-color" href="{CSS_PATH}front/colors/blue-color.css" media="screen"/><!-- DEFAULT BLUE COLOR CSS FILE -->
 
     <!--[if lt IE 9]>
     <script src="{JS_PATH}html5.js"></script>
@@ -59,7 +58,7 @@
                             {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
                                 {loop $data $r}
                                 <li>
-                                <a href="{$r[url]}">{$r[catname]}</a>
+                                <a href="{$r[url]}" class="menu_a">{$r[catname]}</a>
                                 </li>
                                 {/loop}
                             {/pc}

@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="<?php echo IMG_PATH;?>front/favicon.ico"/>
     <link rel="stylesheet" href="<?php echo CSS_PATH;?>front/style.css" media="screen"/>
     <link href="<?php echo JS_PATH;?>ckeditor/contents.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" id="style-color" href="<?php echo CSS_PATH;?>front/colors/blue-color.css" media="screen"/><!-- DEFAULT BLUE COLOR CSS FILE -->
 
     <!--[if lt IE 9]>
     <script src="<?php echo JS_PATH;?>html5.js"></script>
@@ -59,7 +58,7 @@
                             <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=894824ec88c3701696ad9d879ede6b1d&action=category&catid=%24top_parentid&num=15&siteid=%24siteid&order=listorder+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>$top_parentid,'siteid'=>$siteid,'order'=>'listorder ASC','limit'=>'15',));}?>
                                 <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
                                 <li>
-                                <a href="<?php echo $r['url'];?>"><?php echo $r['catname'];?></a>
+                                <a href="<?php echo $r['url'];?>" class="menu_a"><?php echo $r['catname'];?></a>
                                 </li>
                                 <?php $n++;}unset($n); ?>
                             <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>

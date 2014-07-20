@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>php 如何实现二位数组 - php学习资料 - 学编程就去it915</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="dddd">
+    <meta name="description" content="大幅">
+
+    <link rel="shortcut icon" href="http://127.0.0.10/statics/images/front/favicon.ico"/>
+    <link rel="stylesheet" href="http://127.0.0.10/statics/css/front/style.css" media="screen"/>
+    <link href="http://127.0.0.10/statics/js/ckeditor/contents.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" id="style-color" href="http://127.0.0.10/statics/css/front/colors/blue-color.css" media="screen"/><!-- DEFAULT BLUE COLOR CSS FILE -->
+
+    <!--[if lt IE 9]>
+    <script src="http://127.0.0.10/statics/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="container">
+    <!-- main container starts-->
+    <div id="wrapp">
+        <!-- main wrapp starts-->
+        <header id="header">
+            <!--header starts -->
+            <div id="header-links">
+                <div id="container">
+                    <div class="three-fourth">
+                                                <ul class="contact-links">
+                                                        <li><a href="http://127.0.0.10/c/" class="button color small round">C语言</a></li>
+                                                        <li><a href="http://127.0.0.10/cpp/" class="button color small round">c++</a></li>
+                                                        <li><a href="http://127.0.0.10/java/" class="button color small round">java</a></li>
+                                                        <li><a href="http://127.0.0.10/net/" class="button color small round">c#</a></li>
+                                                        <li><a href="http://127.0.0.10/php/" class="button color small round">php</a></li>
+                                                    </ul>
+                                                                    </div>
+                    <nav class="top-search" style="margin-right: 20px;">
+                        <!-- search starts-->
+                        <form action="http://127.0.0.10/index.php" method="get" target="_blank">
+                            <button class="search-btn"></button>
+                            <input type="hidden" name="m" value="search"/>
+                            <input type="hidden" name="c" value="index"/>
+                            <input type="hidden" name="a" value="init"/>
+                            <input type="hidden" name="typeid" value="0" id="typeid"/>
+                            <input type="hidden" name="siteid" value="1" id="siteid"/>
+                            <input type="text" class="search-field" name="q" id="q" onblur="if(this.value=='')this.value='Search';" onfocus="if(this.value=='Search')this.value='';" value="Search"/>
+                        </form>
+                    </nav>
+                </div>
+            </div>
+            <div class="container">
+                <div class="head-wrapp">
+                    <a href="index.html" id="logo">
+                        <img src="http://127.0.0.10/statics/images/front/logo.png" alt="it915"/>
+                    </a>
+                    <div class="one-half">
+                        <ul class="contact-links margin-top">
+                                                                                                                        <li>
+                                <a href="http://127.0.0.10/rumen/">入门教程</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/gaoji/">高级教程</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/ziliao/">资料下载</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/video/">学习视频</a>
+                                </li>
+                                                                <li>
+                                <a href="http://127.0.0.10/wenti/">常见问题</a>
+                                </li>
+                                                                                                                </ul>
+                    </div>
+                    <!--your logo-->
+
+                    <!--search ends -->
+                </div>
+            </div>
+            <div id="main-navigation">
+                <!--main navigation wrapper starts -->
+                <div class="container">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="index.html" id="current">首页</a>
+                        </li>
+
+                        <li><a href="#" >编程语言</a>
+                            <!-- Mega Menu / Start -->
+                                                        <ul class="two-columns">
+                                                                <li class="one-fourth">
+                                    <a href="http://127.0.0.10/c/">C语言</a></li>
+                                                                <li class="one-fourth">
+                                    <a href="http://127.0.0.10/cpp/">c++</a></li>
+                                                                <li class="one-fourth">
+                                    <a href="http://127.0.0.10/java/">java</a></li>
+                                                                <li class="one-fourth">
+                                    <a href="http://127.0.0.10/net/">c#</a></li>
+                                                                <li class="one-fourth">
+                                    <a href="http://127.0.0.10/php/">php</a></li>
+                                                            </ul>
+                                                                                    <!-- Mega Menu / End -->
+                        </li>
+                        <li>
+                            <a href="#"> 常用软件</a>
+                        </li>
+                        <li>
+                            <a href="#">学习资料</a>
+                        </li>
+
+                        <li>
+                            <a href="#">学习视频</a>
+                        </li>
+                        <li>
+                            <a href="#">实用手册</a>
+                        </li>
+                        <li>
+                            <a href="http://hao.it915.com">网址导航</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--main navigation wrapper ends -->
+        </header>
+        <!-- header ends-->
+    <div class="container">
+        <div class="one-half">
+            <ul class="contact-links" style="margin-left:0px;">
+                <li><a href="http://127.0.0.10">首页></a></li>
+                <li><a href="http://127.0.0.10/php/">php</a> > <a href="http://127.0.0.10/rumen/">入门教程</a> > php 如何实现二位数组</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="column-block">
+            <section class="article-left">
+                    <article>
+                        <h2>php 如何实现二位数组</h2>
+                        <h5>
+                            <span>日期：2014-07-13 21:28:06&nbsp;&nbsp;&nbsp;发布者：风继续吹&nbsp;&nbsp;&nbsp;来源：订单&nbsp;&nbsp;&nbsp;评论：<a href="#comment_iframe" id="comment">0</a> 点击：</span><span id="hits"></span>
+                            <div class="bdsharebuttonbox" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+                            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                        </h5>
+                        <section class="content">
+                                                        啊手动阀手动阀撒 啊手动阀手动阀手动阀<br />
+<blockquote>
+	<ol class="dp-c">
+	<li class="alt"><span><span>&lt;?php&nbsp;</span></span></li>
+	<li><span><span class="func">echo</span><span>&nbsp;</span><span class="string">&#39;ok&#39;</span><span>;&nbsp;</span></span></li>
+	<li class="alt"><span><span class="vars">$kk</span><span>&nbsp;=&nbsp;</span><span class="keyword">array</span><span>(</span><span class="string">&#39;b&#39;</span><span>,</span><span class="string">&#39;b&#39;</span><span>,</span><span class="string">&#39;c&#39;</span><span>);&nbsp;</span></span></li>
+	</ol>
+</blockquote>
+<p>&nbsp;</p>
+                            <!--内容关联投票-->
+                            
+                                                    </section>
+                        <nav class="pagination">
+                            <ul>
+                                                            </ul>
+                        </nav>
+                    </article>
+
+                    
+                    <p style="margin-bottom:10px">
+                        <strong>相关热词搜索：</strong><a href="http://127.0.0.10/index.php?m=content&c=tag&a=lists&tag=dddd" class="blue">dddd</a> 	                    </p>
+                    <p class="f14">
+                        <strong>上一篇：</strong><a href="javascript:alert('第一页');">第一页</a><br />
+                        <strong>下一篇：</strong><a href="javascript:alert('最后一页');">最后一页</a>
+                    </p>
+                                                            
+            </section>
+
+            <aside class="article-right">
+                <section class="aside-right">
+                    <div class="box">
+                        <h5 class="top-title">频道总排行</h5>
+                        <ul class="top-list">
+                                                                                    <li><a href="http://127.0.0.10//rumen/20140713/2.html" target="_blank" title="php 如何实现二位数组">php 如何实现二位数组</a></li>
+                                                                                </ul>
+                    </div>
+                </section>
+
+            </aside>
+        </div>
+    </div>
+
+<section id="copyrights">
+    <section class="container">
+        <div class="one-half">
+            <p>
+                京ICP备12006932号-4 Copyright &copy; 2014.<a target="_blank" href="http://www.it915.com/">IT915.com</a> All rights reserved.
+                <a target="_blank" href="http://www.it915.com/">IT915</a>
+            </p>
+        </div>
+        <div class="one-third">
+            <ul class="copyright_links">
+                <li><a href="#" title="关于我们">关于我们</a></li>
+                <li><a href="#" title="联系我们">联系我们</a></li>
+                <li><a href="#" title="版权声明">版权声明</a></li>
+                <li><a href="#" title="投诉建议">投诉建议</a></li>
+            </ul>
+        </div>
+    </section>
+</section>
+
+</div>
+<!-- main wrapp starts-->
+</div>
+<!-- main container ends-->
+</body>
+</html>

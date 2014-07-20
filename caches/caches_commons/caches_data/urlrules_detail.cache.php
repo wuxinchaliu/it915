@@ -24,8 +24,8 @@ return array (
     'module' => 'content',
     'file' => 'show',
     'ishtml' => '1',
-    'urlrule' => '{$categorydir}{$catdir}/{$year}{$month}{$day}/{$id}.html|{$categorydir}{$catdir}/{$year}{$month}{$day}/{$id}_{$page}.html',
-    'example' => 'catdir/20140720/1_2.html',
+    'urlrule' => '{$categorydir}{$catdir}/{$year}{$month}{$day}/{$id}.html|{$categorydir}/{$year}{$month}{$day}/{$id}_{$page}.html',
+    'example' => 'categorydircatdir/20140720/1_2.html',
   ),
   12 => 
   array (
