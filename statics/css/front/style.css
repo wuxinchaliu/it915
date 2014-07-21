@@ -339,7 +339,9 @@ input[type="text"], input[type="password"], input[type="email"], textarea, selec
     font-style: italic;
 }
 /*article content*/
-.article-left{padding:20px 20px 0px 20px;border-right:1px solid #e3e3e3;width:637px;float:left;}
+.left{float:left;}
+.right{float:right;}
+.article-left{padding:20px 20px 0px 20px;border-right:1px solid #e3e3e3;width:637px;}
 .article-left ul.list li{
     border-bottom: 1px dashed #e0e0e0;
     overflow: hidden;
@@ -366,13 +368,34 @@ article h5{
     margin: 12px 0px;
     text-align: center;
 }
-.article-right{float: right;width:320px;}
+.article-right{width:320px;}
 .box{margin-bottom: 20px;}
+.box h3{line-height: 35px;font-size: 14px;border-bottom:2px solid #888;margin-bottom:15px;}
+.box h3 span{padding-left:10px;border-left:7px solid #d33428;}
+.box ul.rumen-menu li{line-height: 25px;}
+.box ul.rumen-menu li ul{margin-left:10px;}
+.box ul.rumen-menu li ul li{line-height: 24px;height:30px;}
+.box ul.rumen-menu li .span-parent{margin-right:5px;}
+.box ul.rumen-menu li.cur_cat .span-child{ background-color: #666;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    margin-right: 6px;
+    margin-top: 5px;
+    text-align: center;
+    width: 16px;}
 .aside-right{padding:10px;}
 .top-list li{line-height: 28px;}
 .position{line-height: 35px;}
 
 .f14{line-height:30px;}
+
+
+/*jiaocheng start*/
+
 /*code start*/
 blockquote { margin:15px 0px;font-family: "Consolas" , "Courier New" ,Courier,mono,serif; width: 99%; border:1px solid #e3e3e3;border-radius: 2px;background-color:#f5f5f5;font-size:13px;}
 blockquote ol, blockquote ol li, blockquote ol li span { margin: 0; padding: 0; border: none; }

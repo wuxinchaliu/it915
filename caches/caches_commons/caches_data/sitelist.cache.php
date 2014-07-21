@@ -3,7 +3,7 @@ return array (
   1 => 
   array (
     'siteid' => '1',
-    'name' => 'it915',
+    'name' => 'admin',
     'dirname' => '',
     'domain' => 'http://127.0.0.10/',
     'site_title' => '学编程就去it915',

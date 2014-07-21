@@ -11,14 +11,14 @@
 
 <div class="container">
     <div class="column-block">
-        <section class="article-left">
+        <section class="article-left left">
             {pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
             <ul class="list">
                 {loop $data $r}
                 <li>
                     <h2><a href="{$r[url]}" target="_blank"{title_style($r[style])}>{$r[title]}</a></h2>
                     <p>{$r[description]}<a href="{$r[url]}">&nbsp;&nbsp;&nbsp;&nbsp;[详情]</a></p>
-                    <span>日期：{date('Y-m-d H:i:s',$r[inputtime])}</span>
+                    <span>日期ok：{date('Y-m-d H:i:s',$r[inputtime])}</span>
                 </li>
                 {/loop}
             </ul>
@@ -30,7 +30,7 @@
             {/pc}
         </section>
 
-        <aside class="article-right">
+        <aside class="article-right right">
             <section class="aside-right">
                 <div class="box">
                     <h5 class="top-title">频道总排行</h5>
