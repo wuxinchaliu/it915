@@ -375,7 +375,7 @@ article h5{
 .box ul.rumen-menu li{line-height: 25px;}
 .box ul.rumen-menu li ul{margin-left:10px;}
 .box ul.rumen-menu li ul li{line-height: 24px;height:30px;}
-.box ul.rumen-menu li .span-parent{margin-right:5px;}
+.box ul.rumen-menu li .span-parent{margin-right:5px;color:#999;}
 .box ul.rumen-menu li.cur_cat .span-child{ background-color: #666;
     color: #fff;
     display: block;
@@ -387,6 +387,11 @@ article h5{
     margin-top: 5px;
     text-align: center;
     width: 16px;}
+.cur_a{color:#d33428;}
+.jiaocheng_list_desc{line-height: 30px;margin-top:15px;border:1px dashed #eeeeee;text-indent: 20px;color:#888;}
+.jiaocheng_list li{line-height: 30px;}
+.jiaocheng_list li span{margin-left: 10px;}
+.bg_grap{background: #f8f8f8;}
 .aside-right{padding:10px;}
 .top-list li{line-height: 28px;}
 .position{line-height: 35px;}

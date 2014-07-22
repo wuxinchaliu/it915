@@ -112,3 +112,7 @@
 <?php exit;?>07-21 16:30:24 | 8192 | Function split() is deprecated | caches\caches_model\caches_data\content_update.class.php | 70
 <?php exit;?>07-21 16:43:39 | 8192 | Function split() is deprecated | caches\caches_model\caches_data\content_update.class.php | 70
 <?php exit;?>07-21 16:43:52 | 8192 | Function split() is deprecated | caches\caches_model\caches_data\content_update.class.php | 70
+<?php exit;?>07-21 17:01:32 | 2 | extract() expects parameter 1 to be array, string given | phpcms\modules\formguide\formguide.php | 243
+<?php exit;?>07-21 17:01:42 | 2 | extract() expects parameter 1 to be array, string given | phpcms\modules\formguide\formguide.php | 243
+<?php exit;?>07-22 09:33:06 | 8192 | Function split() is deprecated | caches\caches_model\caches_data\content_update.class.php | 70
+<?php exit;?>07-22 10:02:45 | 8192 | Function split() is deprecated | caches\caches_model\caches_data\content_update.class.php | 70

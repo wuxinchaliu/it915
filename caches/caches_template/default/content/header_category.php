@@ -13,6 +13,7 @@
     <!--[if lt IE 9]>
     <script src="<?php echo JS_PATH;?>html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="<?php echo JS_PATH;?>jquery.min.js"></script>
 </head>
 <body>
 <div id="container">

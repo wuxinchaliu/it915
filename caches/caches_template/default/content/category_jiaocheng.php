@@ -1,10 +1,9 @@
 <?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><?php include template("content","header_category"); ?>
-
 <div class="container">
     <div class="position">
         <ul class="contact-links" style="margin-left:0px;">
             <li><a href="<?php echo siteurl($siteid);?>">首页></a></li>
-            <li><?php echo catpos($catid);?></li>
+            <li><?php echo catpos($catid);?><?php echo $title;?></li>
         </ul>
     </div>
 </div>
@@ -12,22 +11,37 @@
 <div class="container">
     <div class="column-block">
         <section class="article-left left">
-            <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=5ab4b05e97fd14c3ed386604ee1a9399&action=lists&catid=%24catid&num=25&order=id+DESC&page=%24page\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$pagesize = 25;$page = intval($page) ? intval($page) : 1;if($page<=0){$page=1;}$offset = ($page - 1) * $pagesize;$content_total = $content_tag->count(array('catid'=>$catid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));$pages = pages($content_total, $page, $pagesize, $urlrule);$data = $content_tag->lists(array('catid'=>$catid,'order'=>'id DESC','limit'=>$offset.",".$pagesize,'action'=>'lists',));}?>
-            <ul class="list">
-                <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
-                <li>
-                    <h2><a href="<?php echo $r['url'];?>" target="_blank"<?php echo title_style($r[style]);?>><?php echo $r['title'];?></a></h2>
-                    <p><?php echo $r['description'];?><a href="<?php echo $r['url'];?>">&nbsp;&nbsp;&nbsp;&nbsp;[详情]</a></p>
-                    <span>日期ok：<?php echo date('Y-m-d H:i:s',$r[inputtime]);?></span>
-                </li>
-                <?php $n++;}unset($n); ?>
-            </ul>
-            <nav class="pagination">
-                <ul>
-                    <?php echo $pages;?>
-                </ul>
-            </nav>
-            <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+            <article>
+                <?php $j=1;?>
+                <?php $n=1;if(is_array(subcat($catid))) foreach(subcat($catid) AS $v) { ?>
+                <?php if($v['type']!=0) continue;?>
+                <div class="box cat-area" <?php if($j%2==1) { ?>style="margin-right:10px"<?php } ?>>
+                <h5 class="title-1"><?php echo $v['catname'];?><a href="<?php echo $v['url'];?>" class="more">更多>></a></h5>
+                <div class="content">
+
+                    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=b4f9f2b3c9f4f021c945647df37556d4&action=lists&catid=%24v%5Bcatid%5D&thumb=1&num=1&order=id+DESC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>$v[catid],'thumb'=>'1','order'=>'id DESC','limit'=>'1',));}?>
+                    <p>
+                        <?php $n=1;if(is_array($data)) foreach($data AS $v) { ?>
+                        <a href="<?php echo $v['url'];?>" target="_blank"><img src="<?php echo thumb($v[thumb],70,60);?>" width="70" height="60"/></a>
+                        <strong><a href="<?php echo $v['url'];?>" target="_blank" title="<?php echo $v['title'];?>"<?php echo title_style($v[style]);?>><?php echo str_cut($v[title], 30);?></a></strong><br /><?php echo str_cut($v[description],116,'..');?>
+                        <?php $n++;}unset($n); ?>
+                    </p>
+                    <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+
+                    <div class="bk15 hr"></div>
+                    <ul class="list  lh24 f14">
+                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=5d107604b68e61f01796643989da0a78&action=lists&catid=%24v%5Bcatid%5D&num=5&order=id+DESC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>$v[catid],'order'=>'id DESC','limit'=>'5',));}?>
+                        <?php $n=1;if(is_array($data)) foreach($data AS $v) { ?>
+                        <li><a href="<?php echo $v['url'];?>" target="_blank"<?php echo title_style($v[style]);?>><?php echo $v['title'];?></a></li>
+                        <?php $n++;}unset($n); ?>
+                        <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+                    </ul>
+                </div>
+    </div>
+    <?php if($j%2==0) { ?><div class="bk10"></div><?php } ?>
+    <?php $j++; ?>
+    <?php $n++;}unset($n); ?>
+            </article>
         </section>
 
         <aside class="article-right right">

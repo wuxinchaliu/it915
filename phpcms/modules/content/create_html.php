@@ -78,7 +78,7 @@ class create_html extends admin {
 					$pages = ceil($total/$pagesize);
 					$start = 1;
 				}
-				
+
 				$rs = $this->db->query("SELECT * FROM `$table_name` $where ORDER BY `id` $order LIMIT $offset,$pagesize");
 				$data = $this->db->fetch_array($rs);
 				foreach($data as $r) {
@@ -189,6 +189,7 @@ class create_html extends admin {
 
 	private function urls($id, $catid= 0, $inputtime = 0, $prefix = ''){
 		$urls = $this->url->show($id, 0, $catid, $inputtime, $prefix,'','edit');
+
 		//更新到数据库
 		$url = $urls[0];
 		$this->db->update(array('url'=>$url),array('id'=>$id));

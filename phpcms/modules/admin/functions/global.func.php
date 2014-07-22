@@ -7,6 +7,7 @@
 	 */
 	function template_list($siteid = '', $disable = 0) {
 		$list = glob(PC_PATH.'templates'.DIRECTORY_SEPARATOR.'*', GLOB_ONLYDIR);
+
 		$arr = $template = array();
 		if ($siteid) {
 			$site = pc_base::load_app_class('sites','admin');
@@ -16,6 +17,7 @@
 		foreach ($list as $key=>$v) {
 			$dirname = basename($v);
 			if ($siteid && !in_array($dirname, $template)) continue;
+
 			if (file_exists($v.DIRECTORY_SEPARATOR.'config.php')) {
 				$arr[$key] = include $v.DIRECTORY_SEPARATOR.'config.php';
 				if (!$disable && isset($arr[$key]['disable']) && $arr[$key]['disable'] == 1) {

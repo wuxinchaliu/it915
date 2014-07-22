@@ -11,11 +11,14 @@
 
 <div class="container">
     <div class="column-block">
-        <section class="article-left right" style="border-left:1px solid #e3e3e3;border-right: 0px;">
+        <section class="article-left left">
                 <article>
                     <h2><?php echo $title;?></h2>
                     <h5>
-                        <span>日期：<?php echo $inputtime;?>&nbsp;&nbsp;&nbsp;发布者：风继续吹&nbsp;&nbsp;&nbsp;来源：<?php if($copyfrom ) { ?><?php echo $copyfrom;?><?php } else { ?>it915<?php } ?>&nbsp;&nbsp;</a> 点击：</span><span id="hits"></span><script language="JavaScript" src="<?php echo APP_PATH;?>api.php?op=count&id=<?php echo $id;?>&modelid=<?php echo $modelid;?>"></script>
+                        <span>日期：<?php echo $inputtime;?>&nbsp;&nbsp;&nbsp;发布者：风继续吹&nbsp;&nbsp;&nbsp;来源：<?php echo $copyfrom;?>&nbsp;&nbsp;&nbsp;点击：</span>
+                        <span id="hits"></span><script language="JavaScript" src="<?php echo APP_PATH;?>api.php?op=count&id=<?php echo $id;?>&modelid=<?php echo $modelid;?>"></script>
+
+
                         <div class="bdsharebuttonbox" style="float:right;"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
                         <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                     </h5>
@@ -91,40 +94,28 @@
             </script>
         </section>
 
-        <aside class="article-right left">
+        <aside class="article-right right">
             <section class="aside-right">
                 <div class="box">
-                    <h3><span><?php echo $CATEGORYS[$CAT[parentid]][catname];?></span></h3>
-                    <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=601ecd01304b3bc86775b21a81ccdfef&action=category&catid=%24CAT%5Bparentid%5D&num=25&siteid=%24siteid&order=listorder+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>$CAT[parentid],'siteid'=>$siteid,'order'=>'listorder ASC','limit'=>'25',));}?>
-
-                    <ul class="rumen-menu">
-                        <?php
-                        foreach(array_values($data) as $key=>$r){
-                        ?>
-                           <li <?php if($catid==$r[catid]) { ?>class="cur_cat"<?php } ?>>
-                                <span class="span-parent">第<?php echo $key+1;?>章</span>
-                                <a href="<?php echo $r['url'];?>"><?php echo $r['catname'];?></a>
-                                <?php if($catid==$r[catid]) { ?>
-                                    <ul>
-                                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=c4ba0d42c132db5e01e43c980d6f1d4a&action=lists&catid=%24r%5Bcatid%5D&order=id+ASC&cache=0\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>$r[catid],'order'=>'id ASC','limit'=>'20',));}?>
-                                        <?php $n=1; if(is_array($data)) foreach($data AS $k => $r) { ?>
-                                        <li>
-                                            <span class="span-child"><?php echo $n;?></span>
-                                            <a href="<?php echo $r['url'];?>" target="_blank" <?php if($r[id]==$id) { ?>class="cur_a"<?php } ?>title="<?php echo $r['title'];?>"><?php echo str_cut($r[title], 48, '');?></a>
-                                        </li>
-                                        <?php $n++;}unset($n); ?>
-                                        <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
-                                    </ul>
-                                <?php } ?>
-                            </li>
-                        <?php
-                        }
-                        ?>
+                    <h5 class="top-title">频道总排行</h5>
+                    <ul class="top-list">
+                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=58900d29a2d86f6669bfff23ba8fcaf2&action=hits&catid=%24catid&num=10&order=views+DESC&cache=3600\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$tag_cache_name = md5(implode('&',array('catid'=>$catid,'order'=>'views DESC',)).'58900d29a2d86f6669bfff23ba8fcaf2');if(!$data = tpl_cache($tag_cache_name,3600)){$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'hits')) {$data = $content_tag->hits(array('catid'=>$catid,'order'=>'views DESC','limit'=>'10',));}if(!empty($data)){setcache($tag_cache_name, $data, 'tpl_data');}}?>
+                        <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+                        <li><a href="<?php echo $r['url'];?>" target="_blank" title="<?php echo $r['title'];?>"><?php echo str_cut($r[title], 48, '');?></a></li>
+                        <?php $n++;}unset($n); ?>
+                        <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
                     </ul>
-                    <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
-
                 </div>
-
+                <div class="box">
+                    <h5 class="title-2">频道本月排行</h5>
+                    <ul class="content rank">
+                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=d09a3bdd996817c252fccd081b70bebc&action=hits&catid=%24catid&num=10&order=monthviews+DESC&cache=3600\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$tag_cache_name = md5(implode('&',array('catid'=>$catid,'order'=>'monthviews DESC',)).'d09a3bdd996817c252fccd081b70bebc');if(!$data = tpl_cache($tag_cache_name,3600)){$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'hits')) {$data = $content_tag->hits(array('catid'=>$catid,'order'=>'monthviews DESC','limit'=>'10',));}if(!empty($data)){setcache($tag_cache_name, $data, 'tpl_data');}}?>
+                        <?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+                        <li><a href="<?php echo $r['url'];?>"<?php echo title_style($r[style]);?> class="title" title="<?php echo $r['title'];?>"><?php echo str_cut($r[title],56,'...');?></a></li>
+                        <?php $n++;}unset($n); ?>
+                        <?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
+                    </ul>
+                </div>
             </section>
 
         </aside>
