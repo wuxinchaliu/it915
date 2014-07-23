@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title><?php echo L('admin_site_title')?></title>
+<title><?php echo 'phpcms 管理后台';?></title>
 <link href="<?php echo CSS_PATH?>reset.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo CSS_PATH.SYS_STYLE;?>-system.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo CSS_PATH?>dialog.css" rel="stylesheet" type="text/css" />

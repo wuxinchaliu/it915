@@ -206,6 +206,7 @@ class index {
 	//列表页
 	public function lists() {
 		$catid = $_GET['catid'] = intval($_GET['catid']);
+
 		$_priv_data = $this->_category_priv($catid);
 		if($_priv_data=='-1') {
 			$forward = urlencode(get_url());

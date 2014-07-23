@@ -15,39 +15,25 @@
                 {php $j=1;}
                 {loop subcat($catid) $v}
                 {php if($v['type']!=0) continue;}
-                <div class="box cat-area" {if $j%2==1}style="margin-right:10px"{/if}>
-                <h5 class="title-1">{$v[catname]}<a href="{$v[url]}" class="more">更多>></a></h5>
-                <div class="content">
-
-                    {pc:content action="lists" catid="$v[catid]" thumb="1" num="1" order="id DESC"}
-                    <p>
+                <div class="cate_channel box" {if $j%2==1}style="margin-right:30px"{/if}>
+                    <h3><span><font class="cate_icon">第{toDaXie($j)}章</font><a href="{$v[url]}" class="red">{$v[catname]}</a></span></h3>
+                    <ul class="lanmu">
+                        {pc:content action="lists" catid="$v[catid]"  order="id DESC"}
                         {loop $data $v}
-                        <a href="{$v[url]}" target="_blank"><img src="{thumb($v[thumb],70,60)}" width="70" height="60"/></a>
-                        <strong><a href="{$v[url]}" target="_blank" title="{$v[title]}"{title_style($v[style])}>{str_cut($v[title], 30)}</a></strong><br />{str_cut($v[description],116,'..')}
-                        {/loop}
-                    </p>
-                    {/pc}
-
-                    <div class="bk15 hr"></div>
-                    <ul class="list  lh24 f14">
-                        {pc:content action="lists" catid="$v[catid]" num="5" order="id DESC"}
-                        {loop $data $v}
-                        <li><a href="{$v[url]}" target="_blank"{title_style($v[style])}>{$v[title]}</a></li>
+                            <li><a href="{$v[url]}" target="_blank"{title_style($v[style])}>{$v[title]}</a></li>
                         {/loop}
                         {/pc}
                     </ul>
-                </div>
-    </div>
-    {if $j%2==0}<div class="bk10"></div>{/if}
-    {$j++}
-    {/loop}
+                 </div>
+                {$j++}
+                {/loop}
             </article>
         </section>
 
         <aside class="article-right right">
             <section class="aside-right">
                 <div class="box">
-                    <h5 class="top-title">频道总排行</h5>
+                    <h3 class="bg_grap"><span>频道总排行</span></h3>
                     <ul class="top-list">
                         {pc:content  action="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
                         {loop $data $r}
@@ -57,8 +43,8 @@
                     </ul>
                 </div>
                 <div class="box">
-                    <h5 class="title-2">频道本月排行</h5>
-                    <ul class="content rank">
+                    <h3 class="bg_grap"><span>频道本月排行</span></h3>
+                    <ul class="top-list">
                         {pc:content action="hits" catid="$catid" num="10" order="monthviews DESC" cache="3600"}
                         {loop $data $r}
                         <li><a href="{$r[url]}"{title_style($r[style])} class="title" title="{$r[title]}">{str_cut($r[title],56,'...')}</a></li>

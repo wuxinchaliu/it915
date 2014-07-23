@@ -5,34 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="{$SEO['keyword']}">
     <meta name="description" content="{$SEO['description']}">
-    <link rel="shortcut icon" href="{IMG_PATH}front/favicon.ico"/>
 
+    <link rel="shortcut icon" href="{IMG_PATH}front/favicon.ico"/>
     <link rel="stylesheet" href="{CSS_PATH}front/style.css" media="screen"/>
-    <link rel="stylesheet" id="style-color" href="{CSS_PATH}front/colors/blue-color.css" media="screen"/><!-- DEFAULT BLUE COLOR CSS FILE -->
-    <!-- All JavaScript Files (FOR FASTER LOADING OF YOUR SITE, REMOVE ALL JS PLUGINS YOU WILL NOT USE)-->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.min.js"></script><!-- JQUERY JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery-ui.js"></script><!-- JQUERY UI JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/flex-slider.min.js"></script><!-- FLEX SLIDER JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/navigation.min.js"></script><!-- MAIN NAVIGATION JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.layerslider.js"></script><!-- LAYER SLIDER JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/layerslider.transitions.js"></script><!-- LAYER SLIDER TRANSITIONS JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/map.min.js"></script><!-- GOOGLE MAP JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/carousel.js"></script><!-- CAROUSEL SLIDER JS -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.theme.plugins.min.js"></script><!-- REVOLUTION SLIDER PLUGINS JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.themepunch.revolution.min.js"></script><!-- REVOLUTION SLIDER JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/flickr.js"></script><!-- FLICKR WIDGET JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/instagram.js"></script><!-- INSTAGRAM WIDGET JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.twitter.js"></script><!--TWITTER WIDGET JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/prettyPhoto.min.js"></script><!-- PRETTYPHOTO JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.tooltips.min.js"></script><!-- TOOLTIPS JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/isotope.min.js"></script><!--ISOTOPE JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/scrolltopcontrol.js"></script><!-- SCROLL TO TOP JS PLUGIN -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.easy-pie-chart.js"></script><!-- EASY PIE JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/jquery.transit.min.js"></script><!-- TRANSITION JS FILE -->
-    <script type="text/javascript" src="{JS_PATH}front/custom.js"></script><!-- CUSTOM JAVASCRIPT JS FILE -->
+    <link href="{JS_PATH}ckeditor/contents.css" rel="stylesheet" type="text/css" />
+
     <!--[if lt IE 9]>
     <script src="{JS_PATH}html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
 </head>
 <body>
 <div id="container">
@@ -43,7 +24,7 @@
             <!--header starts -->
             <div id="header-links">
                 <div id="container">
-                    <div class="one">
+                    <div class="three-fourth">
                         {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
                         <ul class="contact-links">
                             {loop $data $r}
@@ -53,16 +34,7 @@
                         {/pc}
                         {php echo runhook('glogal_menu')}
                     </div>
-
-                </div>
-            </div>
-            <div class="container">
-                <div class="head-wrapp">
-                    <a href="index.html" id="logo">
-                        <img src="{IMG_PATH}front/logo.png" alt="it915"/>
-                    </a>
-                    <!--your logo-->
-                    <nav class="top-search">
+                    <nav class="top-search" style="margin-right: 20px;">
                         <!-- search starts-->
                         <form action="{APP_PATH}index.php" method="get" target="_blank">
                             <button class="search-btn"></button>
@@ -73,8 +45,29 @@
                             <input type="hidden" name="siteid" value="{$siteid}" id="siteid"/>
                             <input type="text" class="search-field" name="q" id="q" onblur="if(this.value=='')this.value='Search';" onfocus="if(this.value=='Search')this.value='';" value="Search"/>
                         </form>
-
                     </nav>
+                </div>
+            </div>
+            <div class="container">
+                <div class="head-wrapp">
+                    <a href="index.html" id="logo">
+                        <img src="{IMG_PATH}front/logo.png" alt="it915"/>
+                    </a>
+                    <div class="one-half">
+                        <ul class="contact-links margin-top">
+                            {if $top_parentid}
+                            {pc:content action="category" catid="$top_parentid" num="15" siteid="$siteid" order="listorder ASC"}
+                            {loop $data $r}
+                            <li>
+                                <a href="{$r[url]}" class="menu_a">{$r[catname]}</a>
+                            </li>
+                            {/loop}
+                            {/pc}
+                            {/if}
+                        </ul>
+                    </div>
+                    <!--your logo-->
+
                     <!--search ends -->
                 </div>
             </div>
@@ -91,7 +84,7 @@
                             {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
                             <ul class="two-columns">
                                 {loop $data $r}
-                                <li class="one">
+                                <li class="one-fourth">
                                     <a href="{$r[url]}">{$r[catname]}</a></li>
                                 {/loop}
                             </ul>

@@ -84,7 +84,7 @@
                         foreach(array_values($data) as $key=>$r){
                         ?>
                         <li <?php if($catid==$r[catid]) { ?>class="cur_cat"<?php } ?>>
-                        <span class="span-parent">第<?php echo $key+1;?>章</span>
+                        <span class="span-parent">第<?php echo toDaXie($key+1);?>章</span>
                         <a href="<?php echo $r['url'];?>" <?php if($catid==$r[catid]) { ?>class="cur_a"<?php } ?>><?php echo $r['catname'];?></a>
                         <?php if($catid==$r[catid]) { ?>
                         <ul>

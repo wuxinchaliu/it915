@@ -13,6 +13,7 @@ class index {
 	 * 展示公告
 	 */
 	public function show() {
+
 		if(!isset($_GET['aid'])) {
 			showmessage(L('illegal_operation'));
 		}

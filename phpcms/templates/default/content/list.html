@@ -33,7 +33,7 @@
         <aside class="article-right right">
             <section class="aside-right">
                 <div class="box">
-                    <h5 class="top-title">频道总排行</h5>
+                    <h3 class="bg_grap"><span>频道总排行</span></h3>
                     <ul class="top-list">
                         {pc:content  action="hits" catid="$catid" num="10" order="views DESC" cache="3600"}
                         {loop $data $r}
@@ -43,7 +43,7 @@
                     </ul>
                 </div>
                 <div class="box">
-                    <h5 class="title-2">频道本月排行</h5>
+                    <h3 class="bg_grap"><span>频道本月排行</span></h3>
                     <ul class="content rank">
                         {pc:content action="hits" catid="$catid" num="10" order="monthviews DESC" cache="3600"}
                         {loop $data $r}

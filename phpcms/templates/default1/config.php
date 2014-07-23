@@ -4,7 +4,7 @@
   'dirname' => 'default',
   'homepage' => 'http://www.it915.com/',
   'version' => '1.0',
-  'disable' => 0,
+  'disable' => 1,
   'file_explan' => 
   array (
     'templates|default|content' => 
